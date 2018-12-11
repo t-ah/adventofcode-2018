@@ -35,19 +35,17 @@ fun main(args: Array<String>) {
         println(size)
         for (x in 0..300 - size) {
             for (y in 0..300 - size) {
-                var sum = 0
                 for (i in 0 until size) {
-                    for (j in 0 until size) {
-                        sum += grid[x + i][y + j]
-                    }
+                    cache[x][y] += grid[x + i][y + size - 1] + grid[x + size - 1][y + i]
                 }
-                if (sum > max) {
-                    max = sum
+                cache[x][y] -= grid[x + size - 1][y + size - 1]
+                if (cache[x][y] > max) {
+                    max = cache[x][y]
                     result = Triple(x, y, size)
                 }
             }
         }
     }
     println("Part 2: $result")
-    // Part 2... works
+    // Part 2... works a bit faster now
 }
