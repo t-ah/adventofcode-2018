@@ -17,7 +17,7 @@ fun main(args: Array<String>) {
     }
 
     var count = 1
-    var diffs = mutableListOf(0)
+    val diffs = mutableListOf(0)
     var prev = 0
     while(true) {
         val nextState = sortedMapOf<Int, Char>()
