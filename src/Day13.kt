@@ -25,7 +25,7 @@ fun main(args: Array<String>) {
 
     // dream candidate for optimizing readability
     while (true) {
-        val keys = entities.keys.toMutableList().sortedWith(Comparator{ a, b ->
+        val positionsSorted = entities.keys.toMutableList().sortedWith(Comparator{ a, b ->
             when {
                 a.second > b.second -> 1
                 a.second < b.second -> -1
@@ -35,26 +35,26 @@ fun main(args: Array<String>) {
             }
         })
 
-        for (key in keys) {
-            if (!entities.containsKey(key)) continue
-            val direction = entities[key]?.first
+        for (pos in positionsSorted) {
+            if (!entities.containsKey(pos)) continue
+            val direction = entities[pos]?.first
             var newPosition: Pair<Int, Int> = Pair(-1, -1)
             when (direction) {
-                '^' -> newPosition = Pair(key.first, key.second - 1)
-                'v' -> newPosition = Pair(key.first, key.second + 1)
-                '>' -> newPosition = Pair(key.first + 1, key.second)
-                '<' -> newPosition = Pair(key.first - 1, key.second)
+                '^' -> newPosition = Pair(pos.first, pos.second - 1)
+                'v' -> newPosition = Pair(pos.first, pos.second + 1)
+                '>' -> newPosition = Pair(pos.first + 1, pos.second)
+                '<' -> newPosition = Pair(pos.first - 1, pos.second)
                 else -> println("What.")
             }
             if (entities.containsKey(newPosition)) {
                 println("Crash at: $newPosition")
-                entities.remove(key)
+                entities.remove(pos)
                 entities.remove(newPosition)
                 continue
             }
             val tile = map[newPosition.first][newPosition.second]
             var newDirection = direction ?: 'o'
-            var nextTurn = entities[key]?.second ?: -100
+            var nextTurn = entities[pos]?.second ?: -100
             when (tile) {
                 '/' -> when (direction) {
                     '^' -> newDirection = '>'
@@ -89,7 +89,7 @@ fun main(args: Array<String>) {
                     }
                 }
             }
-            entities.remove(key)
+            entities.remove(pos)
             if (tile == '+') nextTurn = (nextTurn + 1) % 3
             entities[newPosition] = Pair(newDirection, nextTurn)
         }
