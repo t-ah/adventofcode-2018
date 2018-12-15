@@ -3,11 +3,10 @@ fun main(args: Array<String>) {
     val numberOfRecipes = 540561
     val numberStr = numberOfRecipes.toString()
     val recipes = arrayListOf(3, 7)
-
     val elves = arrayOf(0, 1)
     var last = "37"
 
-    inf@ while (true) {
+    inf@while (true) {
         val newRecipe = recipes[elves[0]] + recipes[elves[1]]
         for (char in newRecipe.toString()) {
             recipes.add(char.toString().toInt())
