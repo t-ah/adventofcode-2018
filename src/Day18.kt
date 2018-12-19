@@ -33,7 +33,7 @@ fun main(args: Array<String>) {
         gen++
     }
 
-    println("Part 1: ${area.values.filter { it == '|' }.count() * area.values.filter { it == '#' }.count()}")
+    println("Part 2: ${area.values.filter { it == '|' }.count() * area.values.filter { it == '#' }.count()}")
 }
 
 fun run(area: Map<Pair<Int, Int>, Char>): HashMap<Pair<Int, Int>, Char> {
