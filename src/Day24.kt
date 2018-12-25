@@ -43,21 +43,6 @@ fun main(args: Array<String>) {
     val result = run(0, groups.map { it.copy() }.toMutableList()).sumBy { it.units }
     println("Part 1: $result")
 
-    // 1962 too low
-    // 2964 too high
-//    var interval = 45
-//    var boost = interval
-//    while (true) {
-//        val test = run(boost, groups.map { it.copy() }.toMutableList())
-//        if (interval / 2 == 0) break
-//        interval /= 2
-//        val count = test.filter{ it.team == "Immune" }.sumBy { it.units.toInt() }
-//        println("$boost $count")
-//        if (count == 0) boost += interval
-//        else boost -= interval
-//        break
-//    }
-
     for (boost in 1..55) {
         val test = run(boost, groups.map { it.copy() }.toMutableList())
         if (test.isEmpty()) continue
